@@ -1,0 +1,29 @@
+# Polices commerciales : jamais dans le dépôt public
+assets/fonts/
+
+# Contexte local pour Claude Code
+CLAUDE.md
+.claude/
+
+# Système et éditeurs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Fichiers du serveur
+error_log
+*.log
+.well-known/
+cgi-bin/
+
+# Sauvegardes et passation
+*.bak
+*.tar.gz
+*.zip
+handoff/
+source-media/
+
+# Sortie locale du flux de démo
+_site/
+_fonts/

@@ -1,0 +1,62 @@
+# Publie la branche develop sur GitHub Pages (démo pour approbation).
+# Prérequis : Settings → Pages → Source « GitHub Actions »,
+# secret FONTS_REPO_TOKEN (lecture seule sur kevfulford/mitsou-com-fonts).
+name: Démo (GitHub Pages)
+
+on:
+  push:
+    branches: [develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le site
+        uses: actions/checkout@v4
+
+      - name: Récupérer les polices (dépôt privé)
+        uses: actions/checkout@v4
+        with:
+          repository: kevfulford/mitsou-com-fonts
+          token: ${{ secrets.FONTS_REPO_TOKEN }}
+          path: _fonts
+
+      - name: Assembler la démo
+        run: |
+          mkdir -p _site
+          rsync -a \
+            --exclude '.git*' --exclude '.github' --exclude '_fonts' --exclude '_site' \
+            --exclude 'docs' --exclude 'scripts' --exclude '*.md' --exclude '.htaccess' \
+            ./ _site/
+          mkdir -p _site/assets/fonts
+          cp _fonts/*.woff2 _site/assets/fonts/
+          # Démo : jamais indexée par les moteurs de recherche
+          find _site -name '*.html' -print0 | xargs -0 sed -i 's#<head>#<head>\n  <meta name="robots" content="noindex, nofollow">#'
+          printf 'User-agent: *\nDisallow: /\n' > _site/robots.txt
+          touch _site/.nojekyll
+
+      - name: Préparer l'envoi
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publier sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

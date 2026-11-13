@@ -7,15 +7,22 @@ HTML, CSS et JS statiques, sans étape de build ni dépendance npm. Les textes s
 ## Structure
 
 ```
-index.html          page Musique (accueil)
-biographie.html     page Biographie (servie à /biographie par le .htaccess)
-404.html            page d'erreur
-assets/             CSS, images, icônes
-assets/fonts/       polices — non versionnées
-.htaccess           configuration Apache du serveur (URL propres, sécurité, cache)
-scripts/deploy.sh   mise en production sur le serveur
-docs/               documentation (DEPLOYMENT.md)
+index.html            page Musique (accueil) : El Mundo de Mitsou, Lettre à un cowboy, discographie
+biographie.html       page Biographie (servie à /biographie par le .htaccess)
+404.html              page d'erreur (chemins ramenés à la racine par <base href="/">)
+assets/css/main.css   styles de tout le site (jetons, en-tête, pied de page, pages)
+assets/js/main.js     en-tête, menu mobile, vidéo du tissu, discographie (chargé avec defer)
+assets/images/        photos en WebP (plusieurs tailles), pochettes, images de partage
+assets/video/         boucles du tissu rouge (WebM, MP4) et leur affiche
+assets/fonts/         polices Futura et Eurostile — non versionnées (voir plus bas)
+.htaccess             configuration Apache du serveur (URL propres, sécurité, cache)
+scripts/deploy.sh     mise en production sur le serveur
+docs/                 documentation (DEPLOYMENT.md)
 ```
+
+Après une modification de `main.css` ou `main.js`, augmenter le numéro `?v=` dans les pages pour contourner le cache de Cloudflare.
+
+Les polices sont sous licence : elles ne sont jamais versionnées dans ce dépôt public. En local, copier les `.woff2` dans `assets/fonts/`. La démo les récupère du dépôt privé `kevfulford/mitsou-com-fonts`.
 
 ## Travailler en local
 

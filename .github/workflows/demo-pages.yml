@@ -42,6 +42,8 @@ jobs:
           cp _fonts/*.woff2 _site/assets/fonts/
           # Démo : jamais indexée par les moteurs de recherche
           find _site -name '*.html' -print0 | xargs -0 sed -i 's#<head>#<head>\n  <meta name="robots" content="noindex, nofollow">#'
+          # La 404 est servie à n'importe quelle adresse : sa base doit pointer vers le sous-dossier de la démo
+          sed -i 's#<base href="/">#<base href="/${{ github.event.repository.name }}/">#' _site/404.html
           printf 'User-agent: *\nDisallow: /\n' > _site/robots.txt
           touch _site/.nojekyll
 

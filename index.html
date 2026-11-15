@@ -199,7 +199,7 @@
         <div><dt>Lieu</dt><dd>Amphithéâtre Cogeco<span class="sep" aria-hidden="true"> · </span><span class="sub">Trois-Rivières</span></dd></div>
       </dl>
       <div class="reveal">
-        <a class="btn btn--show" href="https://billets.amphitheatrecogeco.com/atr/?locale=fr-CA&amp;skin=ampcogeco&amp;fac=ATR#6d02ffb6-6fc4-44a7-bd58-48b57f177ce6" target="_blank" rel="noopener">
+        <a class="btn btn--show btn--lg" href="https://billets.amphitheatrecogeco.com/atr/?locale=fr-CA&amp;skin=ampcogeco&amp;fac=ATR#6d02ffb6-6fc4-44a7-bd58-48b57f177ce6" target="_blank" rel="noopener">
           Acheter des billets
           <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M3 9h11M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
           <span class="sr-only">(ouvre le site de l’Amphithéâtre Cogeco dans un nouvel onglet)</span>
@@ -209,23 +209,23 @@
   </section>
 
   <section class="show-intro" aria-labelledby="show-intro-title">
-    <figure class="show-photo">
-      <!-- TODO : remplacer par la seconde photo du spectacle (provisoire : photo du hero) ; ajuster object-position et le texte alternatif -->
-      <img src="assets/images/el-mundo/hero-1280.webp"
-           srcset="assets/images/el-mundo/hero-800.webp 800w, assets/images/el-mundo/hero-1280.webp 1280w, assets/images/el-mundo/hero-1981.webp 1981w"
-           sizes="(min-width: 1040px) 1040px, 100vw" width="1981" height="1486"
-           alt="Mitsou en robe rouge aux traînes déployées dans la salle de l’Amphithéâtre." loading="lazy" decoding="async">
-    </figure>
+    <div class="show-intro__row">
+      <div class="show-intro__photo">
+        <img src="assets/images/el-mundo/photo-2.webp" alt="Mitsou en robe rouge, les mains sur les hanches, entre les rangées de sièges de l’Amphithéâtre." width="658" height="825" loading="lazy" decoding="async">
+      </div>
+      <div class="show-intro__text">
+        <h2 class="sr-only" id="show-intro-title">Le spectacle El Mundo de Mitsou</h2>
+        <p class="intro__body">De <b>«&nbsp;Bye Bye mon cowboy&nbsp;»</b> à <b>«&nbsp;C’est chaud (+HOT)&nbsp;»</b>, en passant par <b>«&nbsp;La Corrida&nbsp;»</b> et <b>«&nbsp;Lettre à un cowboy&nbsp;»</b>, ses grands succès renaissent en versions électro-pop. Entourée de musiciens, de danseurs, d’un DJ et d’artistes invités, dans une mise en scène de la Compagnie Invisible, issue du Cirque du Soleil, elle propose une soirée immersive et festive.</p>
+        <button class="btn btn--ghost" type="button" data-modal-open="about-show" aria-haspopup="dialog">À propos du spectacle</button>
+      </div>
+    </div>
     <div class="show-intro__stage">
       <video class="show-intro__video" muted loop playsinline preload="none" poster="assets/video/el-mundo-tissu-poster.webp" aria-hidden="true" tabindex="-1">
         <source src="assets/video/el-mundo-tissu-loop-960.mp4" type="video/mp4" media="(max-width: 767px)">
         <source src="assets/video/el-mundo-tissu-loop-1600.webm" type="video/webm">
         <source src="assets/video/el-mundo-tissu-loop-1600.mp4" type="video/mp4">
       </video>
-      <div class="container show-intro__inner">
-        <h2 class="sr-only" id="show-intro-title">Le spectacle El Mundo de Mitsou</h2>
-        <p class="intro__body">De <b>«&nbsp;Bye Bye mon cowboy&nbsp;»</b> à <b>«&nbsp;C’est chaud (+HOT)&nbsp;»</b>, en passant par <b>«&nbsp;La Corrida&nbsp;»</b> et <b>«&nbsp;Lettre à un cowboy&nbsp;»</b>, ses grands succès renaissent en versions électro-pop. Entourée de musiciens, de danseurs, d’un DJ et d’artistes invités, dans une mise en scène de la Compagnie Invisible, issue du Cirque du Soleil, elle propose une soirée immersive et festive.</p>
-        <button class="btn btn--ghost" type="button" data-modal-open="about-show" aria-haspopup="dialog">À propos du spectacle</button>
+      <div class="container">
         <div class="player">
           <iframe src="https://www.youtube-nocookie.com/embed/bjzhnNBXiDc?rel=0" title="Bande-annonce d’El Mundo de Mitsou" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>

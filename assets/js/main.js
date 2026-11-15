@@ -57,6 +57,22 @@
     }
   }
 
+  /* ───────── Fenêtre « À propos du spectacle » (<dialog> natif : focus, Échap, reste de la page inerte) ───────── */
+  document.querySelectorAll('[data-modal-open]').forEach((btn) => {
+    const dialog = document.getElementById(btn.dataset.modalOpen);
+    if (!dialog || typeof dialog.showModal !== 'function') return;
+    btn.addEventListener('click', () => {
+      dialog.showModal();
+      document.documentElement.classList.add('has-modal');
+    });
+    // Le navigateur rend le focus au bouton déclencheur à la fermeture
+    dialog.addEventListener('close', () => document.documentElement.classList.remove('has-modal'));
+    const close = dialog.querySelector('[data-modal-close]');
+    if (close) close.addEventListener('click', () => dialog.close());
+    // Clic sur le fond assombri (le <dialog> lui-même, hors de son contenu) : fermer
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+  });
+
   /* ───────── Discographie ───────── */
   const RELEASES = {
     singles: [

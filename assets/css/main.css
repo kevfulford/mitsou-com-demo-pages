@@ -58,6 +58,8 @@ html:has(body.page-music, body.page-bio, body.page-404) { scroll-behavior: smoot
 .btn:active { transform: translateY(1px); }
 .btn--show { background: var(--red-500); color: var(--white); box-shadow: 0 10px 40px -10px rgba(225, 10, 30, .7); }
 .btn--show:hover { background: var(--red-600); }
+.btn--lg { min-height: 68px; padding: 0 var(--s7); font-size: 18px; gap: var(--s4); }
+.btn--lg svg { width: 22px; height: 22px; }
 .btn--music { background: var(--camel-500); color: var(--black); }
 .btn--music:hover { background: var(--camel-200); }
 .bio-press__inner .btn--ghost:hover svg { transform: none; }
@@ -119,20 +121,24 @@ html:has(body.page-music, body.page-bio, body.page-404) { scroll-behavior: smoot
 @keyframes modal-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @keyframes photo { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
 
-/* Bloc du spectacle : photo → texte → bouton « À propos » → bande-annonce */
-.show-photo { max-width: 1040px; margin: 0 auto; padding: 0 var(--gutter); }
-.show-photo img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: 50% 35%; }
-/* Vidéo du tissu : derrière le texte et la bande-annonce seulement, jamais derrière la photo ; elle déborde sous la bande-annonce */
-.show-intro__stage { position: relative; isolation: isolate; overflow: hidden; padding: var(--s7) 0 calc(var(--section) * 1.5); }
-.show-intro__video { position: absolute; inset: 20% 0 0 0; z-index: -2; width: 100%; height: 80%; object-fit: cover; opacity: .75; filter: saturate(.95) brightness(.9);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%); }
-.show-intro__stage::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(70% 45% at 50% 55%, rgba(11, 10, 9, 0), rgba(11, 10, 9, .35)); }
-.show-intro__inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.intro__body { max-width: 40em; font-size: clamp(19px, 1.6vw, 23px); line-height: 1.6; color: var(--text); }
+/* Bloc du spectacle : rangée photo + texte, puis bande-annonce */
+.show-intro__row { position: relative; z-index: 1; display: grid; grid-template-columns: clamp(280px, 30vw, 440px) minmax(0, 1fr); align-items: center; gap: clamp(32px, 5vw, 80px); max-width: 1120px; margin: 0 auto; padding: 0 var(--gutter); }
+/* Seconde photo (658 px de large : jamais affichée à plus de 440 px), fondue dans le noir par deux masques linéaires */
+.show-intro__photo img { width: 100%; height: auto;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 76%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 16%, #000 70%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 76%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 16%, #000 70%, transparent 100%);
+  mask-composite: intersect; }
+.show-intro__text { text-align: left; }
+.intro__body { max-width: 32em; font-size: clamp(19px, 1.6vw, 23px); line-height: 1.6; color: var(--text); }
 .intro__body b { font-weight: 500; color: var(--white); }
-.show-intro .btn--ghost { margin: var(--s6) 0 var(--s8); background: rgba(11, 10, 9, .35); color: var(--text); box-shadow: inset 0 0 0 1px rgba(244, 239, 236, .55); }
+.show-intro .btn--ghost { margin-top: var(--s6); background: rgba(11, 10, 9, .35); color: var(--text); box-shadow: inset 0 0 0 1px rgba(244, 239, 236, .55); }
 .show-intro .btn--ghost:hover { background: rgba(225, 10, 30, .16); color: var(--text); box-shadow: inset 0 0 0 1px var(--red-300); }
-.show-intro .player { width: 100%; }
+/* Vidéo du tissu : remonte juste sous la rangée photo + texte et déborde sous la bande-annonce */
+.show-intro__stage { --rise: clamp(40px, 5vw, 80px); position: relative; isolation: isolate; padding: var(--s8) 0 calc(var(--section) * 1.5); }
+.show-intro__video { position: absolute; top: calc(-1 * var(--rise)); left: 0; z-index: -2; width: 100%; height: calc(100% + var(--rise)); object-fit: cover; opacity: .75; filter: saturate(.95) brightness(.9);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%); }
+.show-intro__stage::before { content: ""; position: absolute; inset: calc(-1 * var(--rise)) 0 0 0; z-index: -1; background: radial-gradient(70% 45% at 50% 55%, rgba(11, 10, 9, 0), rgba(11, 10, 9, .35)); }
 
 /* Fenêtre « À propos du spectacle » (<dialog> natif) */
 .modal { width: min(760px, calc(100% - 32px)); max-width: none; max-height: min(86vh, 900px); padding: 0; border: 1px solid var(--line); background: var(--ink-900); color: var(--text); overflow: hidden; }
@@ -365,12 +371,13 @@ html.has-modal { overflow: hidden; }
   .details dd { font-size: 24px; }
   .details dd .sep { display: none; }
   .details dd .sub { display: block; font-size: 14px; letter-spacing: .14em; margin-top: var(--s1); }
-  .hero .btn { width: 100%; }
+  .hero .btn { width: 100%; padding: 0 var(--s5); font-size: 16px; }
+  .show-intro__row { grid-template-columns: 1fr; justify-items: center; gap: var(--s4); }
+  .show-intro__photo { width: min(72vw, 320px); }
+  .show-intro__text { display: flex; flex-direction: column; align-items: center; text-align: center; }
 }
 @media (max-width: 767px) {
-  .show-photo img { aspect-ratio: 4 / 5; object-position: 50% 25%; }
-  .show-intro__stage { padding-top: var(--s6); }
-  .show-intro .btn--ghost { margin-bottom: var(--s7); }
+  .show-intro__stage { padding-top: var(--s7); }
   .modal__head { padding-left: var(--s5); }
   .modal__body { padding: var(--s5) var(--s5) var(--s6); }
   .shelf__nav { display: none; }

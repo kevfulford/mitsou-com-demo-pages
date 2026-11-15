@@ -193,6 +193,7 @@
         <span class="show-title__top"><span>El Mundo</span> <span class="show-title__de">de</span></span>
         <span class="show-title__name">Mitsou</span>
       </h1>
+      <p class="presenter reveal">Présenté par <img src="assets/images/el-mundo/oziko-logo.webp" alt="Oziko" width="443" height="99" decoding="async"></p>
       <dl class="details reveal">
         <div><dt>Date</dt><dd><time datetime="2027-05-20T20:00-04:00">Jeudi 20 mai 2027</time><span class="sep" aria-hidden="true"> · </span><span class="sub">20 h</span></dd></div>
         <div><dt>Lieu</dt><dd>Amphithéâtre Cogeco<span class="sep" aria-hidden="true"> · </span><span class="sub">Trois-Rivières</span></dd></div>
@@ -208,19 +209,26 @@
   </section>
 
   <section class="show-intro" aria-labelledby="show-intro-title">
-    <video class="show-intro__video" muted loop playsinline preload="none" poster="assets/video/el-mundo-tissu-poster.webp" aria-hidden="true" tabindex="-1">
-      <source src="assets/video/el-mundo-tissu-loop-960.mp4" type="video/mp4" media="(max-width: 767px)">
-      <source src="assets/video/el-mundo-tissu-loop-1600.webm" type="video/webm">
-      <source src="assets/video/el-mundo-tissu-loop-1600.mp4" type="video/mp4">
-    </video>
-    <div class="container show-intro__grid">
-      <div class="intro">
+    <figure class="show-photo">
+      <!-- TODO : remplacer par la seconde photo du spectacle (provisoire : photo du hero) ; ajuster object-position et le texte alternatif -->
+      <img src="assets/images/el-mundo/hero-1280.webp"
+           srcset="assets/images/el-mundo/hero-800.webp 800w, assets/images/el-mundo/hero-1280.webp 1280w, assets/images/el-mundo/hero-1981.webp 1981w"
+           sizes="(min-width: 1040px) 1040px, 100vw" width="1981" height="1486"
+           alt="Mitsou en robe rouge aux traînes déployées dans la salle de l’Amphithéâtre." loading="lazy" decoding="async">
+    </figure>
+    <div class="show-intro__stage">
+      <video class="show-intro__video" muted loop playsinline preload="none" poster="assets/video/el-mundo-tissu-poster.webp" aria-hidden="true" tabindex="-1">
+        <source src="assets/video/el-mundo-tissu-loop-960.mp4" type="video/mp4" media="(max-width: 767px)">
+        <source src="assets/video/el-mundo-tissu-loop-1600.webm" type="video/webm">
+        <source src="assets/video/el-mundo-tissu-loop-1600.mp4" type="video/mp4">
+      </video>
+      <div class="container show-intro__inner">
         <h2 class="sr-only" id="show-intro-title">Le spectacle El Mundo de Mitsou</h2>
-        <p class="intro__lede">Quarante ans après <strong>El Mundo</strong>, Mitsou retrouve la scène pour célébrer son parcours, entre nostalgie et modernité.</p>
         <p class="intro__body">De <b>«&nbsp;Bye Bye mon cowboy&nbsp;»</b> à <b>«&nbsp;C’est chaud (+HOT)&nbsp;»</b>, en passant par <b>«&nbsp;La Corrida&nbsp;»</b> et <b>«&nbsp;Lettre à un cowboy&nbsp;»</b>, ses grands succès renaissent en versions électro-pop. Entourée de musiciens, de danseurs, d’un DJ et d’artistes invités, dans une mise en scène de la Compagnie Invisible, issue du Cirque du Soleil, elle propose une soirée immersive et festive.</p>
-      </div>
-      <div class="player">
-        <iframe src="https://www.youtube-nocookie.com/embed/bjzhnNBXiDc?rel=0" title="Bande-annonce d’El Mundo de Mitsou" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <button class="btn btn--ghost" type="button" data-modal-open="about-show" aria-haspopup="dialog">À propos du spectacle</button>
+        <div class="player">
+          <iframe src="https://www.youtube-nocookie.com/embed/bjzhnNBXiDc?rel=0" title="Bande-annonce d’El Mundo de Mitsou" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </section>
@@ -304,6 +312,41 @@
     </div>
   </section>
 </main>
+
+<!-- Fenêtre « À propos du spectacle » : texte du communiqué de presse -->
+<dialog class="modal" id="about-show" aria-labelledby="about-show-title">
+  <div class="modal__head">
+    <h2 class="modal__title" id="about-show-title">El Mundo <span>de</span> <strong>Mitsou</strong></h2>
+    <button class="modal__close" type="button" data-modal-close aria-label="Fermer">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </div>
+  <div class="modal__body">
+    <p>Après avoir marqué toute une génération et fait vibrer le Québec au rythme de ses succès incontournables, <strong>Mitsou</strong> signe un retour sur scène aussi attendu qu’enlevant avec <strong>El Mundo de Mitsou</strong>, un spectacle-événement présenté en exclusivité le <strong>jeudi 20 mai 2027</strong> à l’<strong>Amphithéâtre Cogeco de Trois-Rivières</strong>.</p>
+    <p>Clin d’œil à son premier album à succès, El Mundo, le titre de ce nouveau spectacle prend aujourd’hui toute sa signification. L’année 2027 revêt d’ailleurs une importance particulière dans la carrière de Mitsou, puisqu’elle marque le 40e anniversaire de l’enregistrement de ses premières chansons destinées à l’album El Mundo, en 1987. Avec El Mundo de Mitsou, l’artiste invite le public à replonger dans son univers créatif. Elle propose un voyage à travers son passé, son présent et son avenir, à la découverte de ce qui a façonné sa carrière et de ce qui continue de l’inspirer.</p>
+    <p>Plus de trois décennies après avoir conquis le public avec son charisme, son audace et son univers singulier, l’icône de la pop québécoise revient sous les projecteurs dans un spectacle qui célèbrera à la fois son héritage musical et son énergie créative toujours renouvelée.</p>
+    <p>Après les nombreux témoignages reçus au cours des derniers mois, Mitsou a ressenti le besoin de retrouver la scène et de renouer avec le public. Dans <strong>El Mundo de Mitsou</strong>, les spectateurs pourront célébrer avec elle ses plus récents succès, dont <strong>C’est chaud (+HOT)</strong>, réalisé en collaboration avec <strong>Ya Cetidon</strong>, et <strong>Lettre à un cowboy</strong>, interprété aux côtés de <strong>Clement Jacques</strong>. Accueillies chaleureusement par les radios et le public, ces deux chansons connaissent également un vif succès sur les plateformes numériques. Il faut d’ailleurs souligner que <strong>C’est chaud (+HOT)</strong> s’est hissée dans le Top 5 des palmarès radio l’été dernier, tandis que <strong>Lettre à un cowboy</strong> semble suivre la même trajectoire et pourrait à son tour s’imposer parmi les grands succès de l’automne.</p>
+    <h3>Un voyage festif entre nostalgie et modernité</h3>
+    <p>De <strong>Bye Bye mon cowboy</strong> à <strong>C’est chaud</strong>, en passant par <strong>La Corrida</strong>, <strong>Dis-moi Dis-moi</strong>, <strong>Lettre à un cowboy</strong> et plusieurs autres titres marquants de son répertoire, Mitsou revisitera ses plus grands succès dans de nouvelles versions aux sonorités électro-pop rassembleuses.</p>
+    <p>Accompagnée de <strong>cinq musiciens, d’artistes invités</strong>, de <strong>danseurs</strong> et d’un <strong>DJ</strong>, elle proposera un spectacle éclaté où musique, images, souvenirs et émotions se conjugueront dans une expérience immersive et festive.</p>
+    <p><strong>El Mundo de Mitsou</strong> promet une soirée haute en couleur, portée par l’énergie contagieuse d’une artiste qui n’a jamais cessé de repousser les frontières de la pop québécoise.</p>
+    <h3>Une équipe créative d’exception</h3>
+    <p>Pour donner vie à cet événement, Mitsou s’est entourée d’une équipe artistique de premier plan.</p>
+    <p>La mise en scène est confiée à <strong>Daniel Fortin</strong> et <strong>Sonya St-Martin,</strong> de la <strong>Compagnie Invisible</strong>, duo issue du Cirque du Soleil, qui se distinguent par leur approche novatrice et immersive du spectacle vivant.</p>
+    <p>La conception des éclairages et de la vidéo est signée <strong>Adam Hummell</strong>, artiste de renommée internationale ayant notamment collaboré avec Madonna, Beyoncé, Billie Eilish et Moment Factory.</p>
+    <p><strong>Antoine Gratton</strong> assurera la direction musicale de cette nouvelle aventure artistique.</p>
+    <h3>Un seul rendez-vous en salle. Une seule soirée.</h3>
+    <p>Pensé comme un événement exclusif, <em><strong>El Mundo de Mitsou</strong></em> réunira, le temps d’une soirée à l’Amphithéâtre Cogeco, les admirateurs de longue date de <strong>Mitsou</strong> et une nouvelle génération de spectateurs, tous conviés à célébrer le parcours exceptionnel d’une artiste qui a marqué l’histoire de la musique populaire québécoise.</p>
+    <p>Le jeudi 20 mai 2027, Mitsou retrouvera avec bonheur la scène et le public pour une soirée placée sous le signe de l’émerveillement, de la nostalgie et de la célébration.</p>
+    <div class="modal__cta">
+      <a class="btn btn--show" href="https://billets.amphitheatrecogeco.com/atr/?locale=fr-CA&amp;skin=ampcogeco&amp;fac=ATR#6d02ffb6-6fc4-44a7-bd58-48b57f177ce6" target="_blank" rel="noopener">
+        Acheter des billets
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M3 9h11M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.75"/></svg>
+        <span class="sr-only">(ouvre le site de l’Amphithéâtre Cogeco dans un nouvel onglet)</span>
+      </a>
+    </div>
+  </div>
+</dialog>
 
 <footer class="site-footer">
   <div class="container">
